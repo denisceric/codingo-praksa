@@ -87,10 +87,10 @@
             <ul class="sidebar-nav">
                 @if (!Auth::guest())
                 <li class="sidebar-brand">
-                    <a href="tasks/create">Dodaj događaj</a>
+                    <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
                 </li>
                 <li>
-                    <a href="#">Događaji u toku</a>
+                    <a href="{!! url('/tasks/index') !!}">Događaji u toku</a>
                 </li>
                 <li>
                     <a href="#">Završeni događaji</a>

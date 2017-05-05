@@ -7,8 +7,7 @@
 {{$user->name}}!</h1>
 Događaji:
 
-
-    @include('tasks.task')
+    
 
 @else
 <hr>
