@@ -4,7 +4,6 @@
 <div class="container">
 Događaji:
 <hr>
-@foreach($tasks as $task)
     <div class="row">
         <div class="col-md-10 col-md-offset-0">
             <div class="panel panel-default">
@@ -19,7 +18,6 @@ Događaji:
             </div>
         </div>
     </div>
-@endforeach
 
 </div>
 @endsection
