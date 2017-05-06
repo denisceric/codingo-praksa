@@ -36,7 +36,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand logo" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         DNEVNIK
                     </a>
                 </div>
@@ -87,7 +87,7 @@
             <ul class="sidebar-nav">
                 @if (!Auth::guest())
                 <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
+                    <a href="{!! url('/tasks/create') !!}"><span class="glyphicon glyphicon-plus" aria-label="true" style="margin-left: -32px;"></span>  Dodaj događaj</a>
                 </li>
                 <li class="sidebar-brand">
                     <a href="{!! url('/tasks/create') !!}">Dodaj zadatak</a>
@@ -95,7 +95,6 @@
                 <li class="sidebar-brand">
                     <a href="{!! url('/tasks/create') !!}">Zadaj zadatak</a>
                 </li>
-                
                 <li>
                     <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
                 </li>
@@ -113,7 +112,7 @@
                 </li>
                 @else
                 <li>
-                    <a href="#">Događaji</a>
+                    <a href="dogadjaji">Događaji</a>
                 </li>
                 <li>
                     <a href="#">Zadaci</a>

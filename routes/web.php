@@ -26,9 +26,12 @@ Route::get('adminerr', function() {
 	return view('adminerr');
 });
 
+
+Route::group(['middleware' => 'auth'],function()
+{
 Route::get('/', [ 'as'=>'home','uses'=>'HomeController@index'] );
 
-
+Route::get('/home', 'HomeController@index' );
 
 Route::get('tasks/index', 'TasksController@index');
 
@@ -41,3 +44,9 @@ Route::get('tasks/{task}', 'TasksController@show');
 Route::get('tasks/edit/{task}', 'TasksController@edit');
 
 Route::patch('/tasks/edit/task/{task}', 'TasksController@update');
+
+});
+
+Route::get('dogadjaji', function() {
+    		return view('dog');
+});
