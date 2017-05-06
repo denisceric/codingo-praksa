@@ -36,7 +36,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand logo" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         DNEVNIK
                     </a>
                 </div>
@@ -85,65 +85,23 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                @if (!Auth::guest())
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj zadatak</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Zadaj zadatak</a>
-                </li>
-                
+            <li class="sidebar-brand">
+                    <a href="{!! url('/admin') !!}">ADMIN PANEL</a>
+            </li>
+            @foreach($users as $user)
                 <li>
-                    <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
+                    <a href="{!! url('/admin/user/') !!}/{{$user->id}}">{{$user->name}}</a>
                 </li>
-                <li>
-                    <a href="{!! url('/tasks/index') !!}">Događaji u toku</a>
-                </li>
-                <li>
-                    <a href="#">Završeni događaji</a>
-                </li>
-                <li>
-                    <a href="#">Zadaci</a>
-                </li>
-                <li>
-                    <a href="#">Dodijeljeni zadaci</a>
-                </li>
-                @else
-                <li>
-                    <a href="#">Događaji</a>
-                </li>
-                <li>
-                    <a href="#">Zadaci</a>
-                </li>
-                <li>
-                    <a href="#">O nama</a>
-                </li>
-                <li>
-                    <a href="#">Kontakt</a>
-                </li>
-                @endif
+            @endforeach
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
+
+        <div class="container">
+            @yield('content')
         </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

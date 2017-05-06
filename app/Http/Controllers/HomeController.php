@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tasks = Task::where('user_id','=', Auth::id())->get();
+        return view('home', compact('tasks'));
     }
 }

@@ -18,7 +18,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('admin', ['middleware' => 'admin', 'uses'=>'AdminController@show']);
+Route::get('admin/user/{user}', ['middleware' => 'admin', 'uses'=>'AdminController@edit']);
+
+Route::get('adminerr', function() {
+	return view('adminerr');
+});
+
+Route::get('/', [ 'as'=>'home','uses'=>'HomeController@index'] );
+
+
 
 Route::get('tasks/index', 'TasksController@index');
 

@@ -36,7 +36,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand logo" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         DNEVNIK
                     </a>
                 </div>
@@ -85,46 +85,11 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                @if (!Auth::guest())
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj zadatak</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Zadaj zadatak</a>
-                </li>
-                
+            @foreach($users as $user)
                 <li>
-                    <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
+                    <a href="{{ route('admin/user') }}{{$user->id}}">{{$user->name}}</a>
                 </li>
-                <li>
-                    <a href="{!! url('/tasks/index') !!}">Događaji u toku</a>
-                </li>
-                <li>
-                    <a href="#">Završeni događaji</a>
-                </li>
-                <li>
-                    <a href="#">Zadaci</a>
-                </li>
-                <li>
-                    <a href="#">Dodijeljeni zadaci</a>
-                </li>
-                @else
-                <li>
-                    <a href="#">Događaji</a>
-                </li>
-                <li>
-                    <a href="#">Zadaci</a>
-                </li>
-                <li>
-                    <a href="#">O nama</a>
-                </li>
-                <li>
-                    <a href="#">Kontakt</a>
-                </li>
-                @endif
+            @endforeach
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -134,7 +99,99 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        @yield('content')
+<div class="container">
+<h1>Dobro došli, 
+@if (!Auth::guest())
+{{Auth::user()->name}}!</h1>
+<hr>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading"><a href="">asd</a><div style="float: right;text-align: right;color: gray;">dsa</div></div>
+
+                <div class="panel-body">
+                    ccc
+                </div>
+                <div class="panel-footer" style="text-align: right;">
+                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@else
+<hr>
+Ovdje možete napraviti dnevnik rada.
+@endif
+</div>
+
                     </div>
                 </div>
             </div>
