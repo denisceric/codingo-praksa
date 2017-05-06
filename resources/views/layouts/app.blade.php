@@ -89,26 +89,14 @@
                 <li class="sidebar-brand">
                     <a href="{!! url('/tasks/create') !!}"><span class="glyphicon glyphicon-plus" aria-label="true" style="margin-left: -32px;"></span>  Dodaj događaj</a>
                 </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Dodaj zadatak</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="{!! url('/tasks/create') !!}">Zadaj zadatak</a>
-                </li>
                 <li>
                     <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
                 </li>
                 <li>
-                    <a href="{!! url('/tasks/index') !!}">Događaji u toku</a>
+                    <a href="{!! url('/tasks/complete') !!}">Događaji u toku</a>
                 </li>
                 <li>
                     <a href="#">Završeni događaji</a>
-                </li>
-                <li>
-                    <a href="#">Zadaci</a>
-                </li>
-                <li>
-                    <a href="#">Dodijeljeni zadaci</a>
                 </li>
                 @else
                 <li>

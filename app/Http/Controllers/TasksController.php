@@ -74,6 +74,11 @@ class TasksController extends Controller
     public function edit($id)
     {
         $tasks = Task::where('id','=', $id)->get();
+        foreach($tasks as $task) {
+            if ($task->user_id != Auth::id()) {
+                return view('tasks.notuserstask');
+            }
+        }
         return view('tasks.edit', compact('tasks'));
     }
 
@@ -98,6 +103,10 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
+        if ($task->user_id != Auth::id()) {
+            return view('tasks.notuserstask');
+        }
+        
         $task->is_completed = true;
 
         $task->update();
@@ -107,6 +116,10 @@ class TasksController extends Controller
     public function uncompleted($id)
     {
         $task = Task::find($id);
+
+        if ($task->user_id != Auth::id()) {
+            return view('tasks.notuserstask');
+        }
 
         $task->is_completed = false;
 

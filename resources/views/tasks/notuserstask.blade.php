@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
-<h2>This is not your task! Go back.</h2>
+<h1>GREŠKA:</h1>
+<h3>Ovaj događaj ne pripada vama.</h3>
 </div>
 @endsection
