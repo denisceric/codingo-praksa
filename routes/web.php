@@ -45,6 +45,9 @@ Route::get('tasks/edit/{task}', 'TasksController@edit');
 
 Route::patch('/tasks/edit/task/{task}', 'TasksController@update');
 
+Route::get('tasks/{task}/completed', 'TasksController@completed');
+
+Route::get('tasks/{task}/uncompleted', 'TasksController@uncompleted');
 });
 
 Route::get('dogadjaji', function() {

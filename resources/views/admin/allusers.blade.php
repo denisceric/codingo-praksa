@@ -99,7 +99,7 @@
 
         <!-- Page Content -->
 
-        <div class="container">
+        <div class="col-md-offset-1 container">
             @yield('content')
         </div>
     <!-- Scripts -->

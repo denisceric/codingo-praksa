@@ -10,7 +10,7 @@
             <h3> Događaji korisnika: </h3>
 @foreach($tasks as $task)
     <div class="row">
-        <div class="col-md-10 col-md-offset-0">
+        <div class="col-md-9 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $task->title }} <div style="float: right;text-align: right;color: gray;">{{ $task->created_at }}</div></div>
 

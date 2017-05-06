@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Task;
+use Illuminate\Support\Facades\Redirect;
 
 class TasksController extends Controller
 {
@@ -58,6 +59,9 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+        if ($task->user_id != Auth::id()) {
+            return view('tasks.notuserstask');
+        }
         return view('tasks.show', compact('task'));
     }
 
@@ -82,15 +86,33 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
+        $task = Task::where('id','=', $id)->get();
 
         $task->title = request('title');
         $task->description = request('description');
         $task->user_id = Auth::id();
 
         $task->update();
+    }
+    public function completed($id)
+    {
+        $task = Task::find($id);
 
-        return redirect('/');
+        $task->is_completed = true;
+
+        $task->update();
+
+        return Redirect::back()->with('message', 'Uspješno označeno!');
+    }
+    public function uncompleted($id)
+    {
+        $task = Task::find($id);
+
+        $task->is_completed = false;
+
+        $task->update();
+
+        return Redirect::back()->with('message', 'Uspješno označeno!');
     }
 
     /**
