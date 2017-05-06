@@ -5,7 +5,7 @@
 Događaji:
 <hr>
 @foreach($tasks as $task)
-@if(Auth::id() == $task->user_id)
+
     <div class="row">
         <div class="col-md-10 col-md-offset-0">
             <div class="panel panel-default">
@@ -15,12 +15,12 @@ Događaji:
                     {{ $task->description }}
                 </div>
                 <div class="panel-footer" style="text-align: right;">
-                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
+                    <a href="#">Označi kao završeno</a> | <a href="{!! url('/tasks/edit/') !!}/{{ $task->id }}">Izmjeni</a> | <a href="#">Izbriši</a>
                 </div>
             </div>
         </div>
     </div>
-@endif
+
 @endforeach
 
 </div>

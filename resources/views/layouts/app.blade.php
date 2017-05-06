@@ -89,6 +89,16 @@
                 <li class="sidebar-brand">
                     <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
                 </li>
+                <li class="sidebar-brand">
+                    <a href="{!! url('/tasks/create') !!}">Dodaj zadatak</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="{!! url('/tasks/create') !!}">Zadaj zadatak</a>
+                </li>
+                
+                <li>
+                    <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
+                </li>
                 <li>
                     <a href="{!! url('/tasks/index') !!}">Događaji u toku</a>
                 </li>

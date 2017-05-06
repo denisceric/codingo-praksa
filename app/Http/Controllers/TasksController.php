@@ -15,7 +15,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::latest()->get();
+        $tasks = Task::where('user_id','=', Auth::id())->get();
+        
         return view('tasks.index', compact('tasks'));
     }
 
@@ -68,7 +69,8 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tasks = Task::where('id','=', $id)->get();
+        return view('tasks.edit', compact('tasks'));
     }
 
     /**
@@ -80,7 +82,15 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+
+        $task->title = request('title');
+        $task->description = request('description');
+        $task->user_id = Auth::id();
+
+        $task->update();
+
+        return redirect('/');
     }
 
     /**

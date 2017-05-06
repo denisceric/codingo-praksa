@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    public function tasks()
+    public function user()
     {
-        return $this->belongsTo(Auth::class);
+        return $this->belongsTo(User::class);
     }
 }
