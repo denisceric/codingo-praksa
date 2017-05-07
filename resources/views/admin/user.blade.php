@@ -30,4 +30,7 @@ $color = '#d7ffd1';
             </div>
         </div>
 @endforeach
+@if(count($tasks) < 1)
+    Nema događaja.
+@endif
 @endsection

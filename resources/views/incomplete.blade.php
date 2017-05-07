@@ -7,7 +7,7 @@ $count = 0;
 <div class="container">
 @if(Session::has('message')) <div class="row" id="hideMe"><div class="alert alert-info col-md-6"> {{Session::get('message')}} </div></div>
 @endif
-<h2>Događaji:</h2>
+<h2>Završeni događaji:</h2>
 <hr><hr>
 @foreach($tasks as $task)
 @if($task->is_completed == true)

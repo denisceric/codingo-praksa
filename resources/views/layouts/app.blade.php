@@ -93,7 +93,7 @@
                     <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
                 </li>
                 <li>
-                    <a href="{!! url('/complete') !!}">Događaji u toku</a>
+                    <a href="{!! url('/complete') !!}">Aktivni događaji</a>
                 </li>
                 <li>
                     <a href="{!! url('/incomplete') !!}">Završeni događaji</a>
