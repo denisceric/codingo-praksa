@@ -9,19 +9,25 @@
             <hr>
             <h3> Događaji korisnika: </h3>
 @foreach($tasks as $task)
-    <div class="row">
-        <div class="col-md-9 col-md-offset-0">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{ $task->title }} <div style="float: right;text-align: right;color: gray;">{{ $task->created_at }}</div></div>
+@if($task->is_completed == true)
+<?php
+$color = '#d3efff';
+$link = '<a href="' . url('/tasks/') . '/' . $task->id . '/uncompleted">Označi kao nedovršeno</a>';
+?>
+@else
+<?php
+$link = '<a href="' . url('/tasks/') . '/' . $task->id . '/completed">Označi kao završeno</a>';
+$color = '#d7ffd1';
+    ?>
+@endif
+        <div class="col-md-5 col-md-offset-0">
+            <div class="panel panel-default" style="background-color: {{ $color }};">
+                <div class="panel-heading" style="background-color: {{ $color }};">{{ $task->title }}<div style="float: right;text-align: right;color: gray;"><strong>{{ $task->created_at }}</strong></div></div>
 
                 <div class="panel-body">
                     {{ $task->description }}
                 </div>
-                <div class="panel-footer" style="text-align: right;">
-                    <a href="#">Označi kao završeno</a> | <a href="#">Izmjeni</a> | <a href="#">Izbriši</a>
-                </div>
             </div>
         </div>
-    </div>
 @endforeach
 @endsection

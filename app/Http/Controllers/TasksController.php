@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Task;
-use Illuminate\Support\Facades\Redirect;
 
 class TasksController extends Controller
 {
@@ -47,7 +46,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Uspješno dodato!');
     }
 
     /**
@@ -58,7 +57,10 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
+        if ($task === null) {
+           return 'NE POSTOJI';
+        }
         if ($task->user_id != Auth::id()) {
             return view('tasks.notuserstask');
         }
@@ -91,14 +93,33 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::where('id','=', $id)->get();
+        $task = Task::where('id','=', $id)->first();
 
         $task->title = request('title');
         $task->description = request('description');
         $task->user_id = Auth::id();
 
         $task->update();
+        return redirect('/')->with('message', 'Uspješno izmjenjeno!');
+
     }
+    public function complete()
+    {
+        $tasks = Task::where('user_id','=', Auth::id())->get();
+        if ($tasks === null) {
+           return 'NE POSTOJI';
+        }
+        return view('complete', compact('tasks'));
+    }
+    public function incomplete()
+    {
+        $tasks = Task::where('user_id','=', Auth::id())->get();
+        if ($tasks === null) {
+           return 'NE POSTOJI';
+        }
+        return view('incomplete', compact('tasks'));
+    }
+
     public function completed($id)
     {
         $task = Task::find($id);
@@ -111,7 +132,7 @@ class TasksController extends Controller
 
         $task->update();
 
-        return Redirect::back()->with('message', 'Uspješno označeno!');
+        return redirect()->back()->with('message', 'Uspješno označeno!');
     }
     public function uncompleted($id)
     {
@@ -125,7 +146,7 @@ class TasksController extends Controller
 
         $task->update();
 
-        return Redirect::back()->with('message', 'Uspješno označeno!');
+        return redirect()->back()->with('message', 'Uspješno označeno!');
     }
 
     /**
@@ -136,6 +157,11 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        if ($task->user_id != Auth::id()) {
+            return view('tasks.notuserstask');
+        }
+        $task->destroy($id);
+        return redirect()->back()->with('message', 'Uspješno izbrisano!');
     }
 }

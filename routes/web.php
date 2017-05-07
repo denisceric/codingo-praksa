@@ -39,17 +39,29 @@ Route::get('/tasks/create', 'TasksController@create');
 
 Route::post('/tasks', 'TasksController@store');
 
-Route::get('tasks/{task}', 'TasksController@show');
-
 Route::get('tasks/edit/{task}', 'TasksController@edit');
 
 Route::patch('/tasks/edit/task/{task}', 'TasksController@update');
 
+Route::get('tasks/{task}/delete', 'TasksController@destroy');
+
+Route::get('tasks/{task}', 'TasksController@show');
+
 Route::get('tasks/{task}/completed', 'TasksController@completed');
 
 Route::get('tasks/{task}/uncompleted', 'TasksController@uncompleted');
+
+Route::get('complete', 'TasksController@complete');
+
+Route::get('incomplete', 'TasksController@incomplete');
 });
 
 Route::get('dogadjaji', function() {
     		return view('dog');
+});
+Route::get('aboutus', function() {
+    		return view('aboutus');
+});
+Route::get('contact', function() {
+    		return view('contact');
 });

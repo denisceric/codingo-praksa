@@ -93,23 +93,20 @@
                     <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
                 </li>
                 <li>
-                    <a href="{!! url('/tasks/complete') !!}">Događaji u toku</a>
+                    <a href="{!! url('/complete') !!}">Događaji u toku</a>
                 </li>
                 <li>
-                    <a href="#">Završeni događaji</a>
+                    <a href="{!! url('/incomplete') !!}">Završeni događaji</a>
                 </li>
                 @else
                 <li>
                     <a href="dogadjaji">Događaji</a>
                 </li>
                 <li>
-                    <a href="#">Zadaci</a>
+                    <a href="aboutus">O nama</a>
                 </li>
                 <li>
-                    <a href="#">O nama</a>
-                </li>
-                <li>
-                    <a href="#">Kontakt</a>
+                    <a href="contact">Kontakt</a>
                 </li>
                 @endif
             </ul>
