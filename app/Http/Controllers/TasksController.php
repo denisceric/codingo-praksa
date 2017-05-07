@@ -38,6 +38,12 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:40',
+            'description' => 'required|max:255'
+        ]);
+
+
         $task = new Task;
 
         $task->title = request('title');
@@ -93,6 +99,10 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|max:40',
+            'description' => 'required|max:255'
+        ]);
         $task = Task::where('id','=', $id)->first();
 
         $task->title = request('title');
