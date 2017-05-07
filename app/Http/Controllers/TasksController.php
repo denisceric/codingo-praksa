@@ -15,7 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('user_id','=', Auth::id())->get();
+        $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         
         return view('tasks.index', compact('tasks'));
     }
@@ -65,7 +65,7 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         if ($task === null) {
-           return 'NE POSTOJI';
+            return 'NE POSTOJI';
         }
         if ($task->user_id != Auth::id()) {
             return view('tasks.notuserstask');
@@ -81,8 +81,8 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $tasks = Task::where('id','=', $id)->get();
-        foreach($tasks as $task) {
+        $tasks = Task::where('id', '=', $id)->get();
+        foreach ($tasks as $task) {
             if ($task->user_id != Auth::id()) {
                 return view('tasks.notuserstask');
             }
@@ -103,7 +103,7 @@ class TasksController extends Controller
             'title' => 'required|max:40',
             'description' => 'required|max:255'
         ]);
-        $task = Task::where('id','=', $id)->first();
+        $task = Task::where('id', '=', $id)->first();
 
         $task->title = request('title');
         $task->description = request('description');
@@ -111,21 +111,20 @@ class TasksController extends Controller
 
         $task->update();
         return redirect('/')->with('message', 'Uspješno izmjenjeno!');
-
     }
     public function complete()
     {
-        $tasks = Task::where('user_id','=', Auth::id())->get();
+        $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         if ($tasks === null) {
-           return 'NE POSTOJI';
+            return 'NE POSTOJI';
         }
         return view('complete', compact('tasks'));
     }
     public function incomplete()
     {
-        $tasks = Task::where('user_id','=', Auth::id())->get();
+        $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         if ($tasks === null) {
-           return 'NE POSTOJI';
+            return 'NE POSTOJI';
         }
         return view('incomplete', compact('tasks'));
     }

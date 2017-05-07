@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	$user = Auth::user();
+    $user = Auth::user();
     return view('home', compact('user'));
 });
 
@@ -22,46 +22,45 @@ Auth::routes();
 Route::get('admin', ['middleware' => 'admin', 'uses'=>'AdminController@show']);
 Route::get('admin/user/{user}', ['middleware' => 'admin', 'uses'=>'AdminController@edit']);
 
-Route::get('adminerr', function() {
-	return view('adminerr');
+Route::get('adminerr', function () {
+    return view('adminerr');
 });
 
 
-Route::group(['middleware' => 'auth'],function()
-{
-Route::get('/', [ 'as'=>'home','uses'=>'HomeController@index'] );
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [ 'as'=>'home','uses'=>'HomeController@index']);
 
-Route::get('/home', 'HomeController@index' );
+    Route::get('/home', 'HomeController@index');
 
-Route::get('tasks/index', 'TasksController@index');
+    Route::get('tasks/index', 'TasksController@index');
 
-Route::get('/tasks/create', 'TasksController@create');
+    Route::get('/tasks/create', 'TasksController@create');
 
-Route::post('/tasks', 'TasksController@store');
+    Route::post('/tasks', 'TasksController@store');
 
-Route::get('tasks/edit/{task}', 'TasksController@edit');
+    Route::get('tasks/edit/{task}', 'TasksController@edit');
 
-Route::patch('/tasks/edit/task/{task}', 'TasksController@update');
+    Route::patch('/tasks/edit/task/{task}', 'TasksController@update');
 
-Route::get('tasks/{task}/delete', 'TasksController@destroy');
+    Route::get('tasks/{task}/delete', 'TasksController@destroy');
 
-Route::get('tasks/{task}', 'TasksController@show');
+    Route::get('tasks/{task}', 'TasksController@show');
 
-Route::get('tasks/{task}/completed', 'TasksController@completed');
+    Route::get('tasks/{task}/completed', 'TasksController@completed');
 
-Route::get('tasks/{task}/uncompleted', 'TasksController@uncompleted');
+    Route::get('tasks/{task}/uncompleted', 'TasksController@uncompleted');
 
-Route::get('complete', 'TasksController@complete');
+    Route::get('complete', 'TasksController@complete');
 
-Route::get('incomplete', 'TasksController@incomplete');
+    Route::get('incomplete', 'TasksController@incomplete');
 });
 
-Route::get('dogadjaji', function() {
-    		return view('dog');
+Route::get('dogadjaji', function () {
+    return view('dog');
 });
-Route::get('aboutus', function() {
-    		return view('aboutus');
+Route::get('aboutus', function () {
+    return view('aboutus');
 });
-Route::get('contact', function() {
-    		return view('contact');
+Route::get('contact', function () {
+    return view('contact');
 });
