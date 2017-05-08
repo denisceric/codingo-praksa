@@ -58,7 +58,18 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                <div class="mojmeni">
+                                @if (!Auth::guest())
+                                <a href="{!! url('/tasks/create') !!}">Dodaj događaj</a>
+                                <a href="{!! url('/tasks/index') !!}">Svi događaji</a>
+                                <a href="{!! url('/complete') !!}">Aktivni događaji</a>
+                                <a href="{!! url('/incomplete') !!}">Završeni događaji</a>
+                                @else
+                                <a href="dogadjaji">Događaji</a>
+                                <a href="aboutus">O nama</a>
+                                <a href="contact">Kontakt</a>
+                                @endif
+                                </div>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -79,9 +90,7 @@
             </div>
         </nav>
     </div>
-
 <div id="wrapper">
-
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -112,11 +121,10 @@
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
+            <div class="row">
                     <div class="col-lg-12">
                         @yield('content')
                     </div>
@@ -126,7 +134,7 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
