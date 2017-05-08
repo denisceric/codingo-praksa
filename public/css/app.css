@@ -9,6 +9,9 @@ body {
 .glyphicon.glyphicon-plus {
     font-size: 22px;
 }
+.panel-body  {
+    word-break:break-all
+}
 #hideMe {
 	padding-top: 60px;
 	position: absolute;
