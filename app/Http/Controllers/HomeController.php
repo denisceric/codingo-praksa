@@ -23,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //get all events that belongs to current user.
     {
         $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         return view('home', compact('tasks'));

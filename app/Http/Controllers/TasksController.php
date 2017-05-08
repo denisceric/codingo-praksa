@@ -13,7 +13,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //this function gets all of the events that belongs to user
     {
         $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         
@@ -25,7 +25,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() // I guess this could be done in a single route but I like it here
     {
         return view('tasks.create');
     }
@@ -36,7 +36,7 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //basic form validation and eloquent for inserting data
     {
         $this->validate($request, [
             'title' => 'required|max:40',
@@ -61,13 +61,13 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //this shows a single event if user clicks on it
     {
         $task = Task::findOrFail($id);
         if ($task === null) {
             return 'NE POSTOJI';
         }
-        if ($task->user_id != Auth::id()) {
+        if ($task->user_id != Auth::id()) { //this is how I am checking if event belongs to user.
             return view('tasks.notuserstask');
         }
         return view('tasks.show', compact('task'));
@@ -79,7 +79,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) // Getting values of specific tasks that needs to be edited
     {
         $tasks = Task::where('id', '=', $id)->get();
         foreach ($tasks as $task) {
@@ -97,7 +97,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //updating db table when user edits event
     {
         $this->validate($request, [
             'title' => 'required|max:40',
@@ -112,7 +112,7 @@ class TasksController extends Controller
         $task->update();
         return redirect('/')->with('message', 'Uspješno izmjenjeno!');
     }
-    public function complete()
+    public function complete() // Getting completed events
     {
         $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         if ($tasks === null) {
@@ -121,6 +121,7 @@ class TasksController extends Controller
         return view('complete', compact('tasks'));
     }
     public function incomplete()
+    //It seemed easier to make two functions instead of one ? I am a newbee tho
     {
         $tasks = Task::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
         if ($tasks === null) {
@@ -129,7 +130,7 @@ class TasksController extends Controller
         return view('incomplete', compact('tasks'));
     }
 
-    public function completed($id)
+    public function completed($id) //Change the is_completed row to true if link is clicked
     {
         $task = Task::find($id);
 
@@ -143,7 +144,7 @@ class TasksController extends Controller
 
         return redirect()->back()->with('message', 'Uspješno označeno!');
     }
-    public function uncompleted($id)
+    public function uncompleted($id) //Change the is_completed row to false if link is clicked
     {
         $task = Task::find($id);
 
@@ -164,13 +165,13 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //Event deletion
     {
         $task = Task::find($id);
         if ($task->user_id != Auth::id()) {
             return view('tasks.notuserstask');
         }
         $task->destroy($id);
-        return redirect()->back()->with('message', 'Uspješno izbrisano!');
+        return redirect('/')->with('message', 'Uspješno izbrisano!');
     }
 }

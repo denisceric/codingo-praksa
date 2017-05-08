@@ -1,14 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+/**
+     I am enjoying coding in laravel really.. It is great as everyone says. 
+     This project would take me 3x time if I was doing it in pure php and mysql.
+     I didn't pay very much attention on frontend.. it's just basic bootstrap..
+     Code is little messy, a lot can be shortened, but it works as far as I know.
+     I tested it as much as I could at this moment.
 */
 
 Route::get('/', function () {
